@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav>
+        <div class="navbar">
+            <div class="navbar" >
+                <img src="assets/icon/dumbways.png" alt="Dumbways" width="50px" style="margin: 10px 10px 0 10px;">
+                <ul class="menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="myProject.html">My Project</a></li>
+                </ul>
+                
+            </div>
+            <div style="text-align: right;">
+                <a href="contact.html"><button class="navbar-contact">Contact Me</button></a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="body">
+        <form>
+            <h3 class="body">GET IN TOUCH</h3>
+            <div class="body2">
+                <label>Name</label>
+                <input type="text" class="text-area" id="inputNama">
+                <label>Email</label>
+                <input type="text" class="text-area" id="inputEmail">
+                <label>Phone Number</label>
+                <input type="text"class="text-area" id="inputPhone">
+                <label >Subject</label>
+                <select class="text-area" id="inputSubject">
+                    <option></option>
+                    <option >frontend Develover</option>
+                    <option >Backend Develover</option>
+                    <option >fullstack Develover</option>
+                </select>
+                <label>your massege</label>
+                <textarea style="width: auto; height: 100px;" id="inputMessege"></textarea>
+            </div>  
+            <div class="area-button">
+                <input type="button" value="submit" class="button" onclick="data()">
+            </div>
+        </form>
+</div>
+<script src="js/contact.js"></script>
+</body>
+</html>
+

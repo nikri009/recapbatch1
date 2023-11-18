@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>my project</title>
+    <link rel="stylesheet" href="css/myProject.css">
+    <link rel="stylesheet" href="css/project.css">
+</head>
+<body>
+    <nav>
+        <div class="navbar">
+            <div class="navbar" >
+                <img src="assets/icon/dumbways.png" alt="Dumbways" width="50px" style="margin: 10px 10px 0 10px;">
+                <ul class="menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="myProject.html">My Project</a></li>
+                </ul>
+                
+            </div>
+            <div style="text-align: right;">
+                <a href="contact.html"><button class="navbar-contact">Contact Me</button></a>
+            </div>
+        </div>
+    </nav>
+    <div id="project">
+
+    </div>
+    
+
+    <div class="body">
+        <div>
+            <form class="body2" onsubmit="submint(event)">
+                <h3 style="text-align: center;">ADD MY PROJECT</h3>
+            <br>
+                <label for="name">Project Name</label>
+                <input type="text" id="inputName" name="name" style="height: 20px; background-color: #ffffff;border-radius: 10px;">
+                <div class="checkbox-container">
+                    <div >
+                    <label for="start-date">Start Date</label><br>
+                    <input type="date" id="start-date" name="start-date" style="height: 20px; width: 190px; background-color: #ffffff;border-radius: 10px;">
+                    </div>
+                    <div>
+                    <label for="end-date">End Date</label><br>
+                    <input type="date" id="end-date" name="end-date" style="height: 20px; width: 190px; background-color: #ffffff;border-radius: 10px;">
+                    </div>
+                </div> 
+                <label for="description">Description</label>
+                <textarea id="description" name="description" rows="7" cols="50" style="background-color: #ffffff;border-radius: 10px;"></textarea>
+
+                
+                <label>Technologies</label>
+                <div class="checkbox-container">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="checkbox1" class="checkbox">
+                        <label for="checkbox1">Node js</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="checkbox2" class="checkbox">
+                        <label for="checkbox2">Next js</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="checkbox3" class="checkbox">
+                        <label for="checkbox3">React js</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="checkbox4" class="checkbox">
+                        <label for="checkbox4">TypeScript</label>
+                    </div>
+                </div>
+
+                <br>
+                <label for="upload">Upload Image</label>
+                <input type="file" title="" style="background-color: #ffffff;border-radius: 5px; " id="image">
+                <div class="button-area">
+                    <button class="button" >Submit</button>
+                </div>
+            </form>
+        </div>
+        
+        
+    </div>
+    <div>
+        <br><br><h1 style="text-align: center;">Project</h1><br><br>
+    </div>
+    <div id="contents" style="display: flex; flex-wrap: wrap; justify-content: center;">
+        
+    </div>
+   
+<script src="js/project.js"></script>
+</body>
+</html>

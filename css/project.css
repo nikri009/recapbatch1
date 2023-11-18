@@ -1,0 +1,29 @@
+.card {
+    
+    flex-basis: 300px;
+    width: 50%; 
+    height: 300px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px 10px 10px 10px;
+    margin: 10px 10px 10px 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    
+    
+    
+    
+} 
+
+.img{
+    width: 100%;
+    height: 100%;
+
+ }
+ 
+ .container-card {
+    display: flex;
+    width: 400px;
+    justify-content: center;
+    /* align-content: flex-start; */
+
+}

@@ -1,0 +1,86 @@
+*{
+    margin: 0;
+    padding: 0;
+    
+}
+.body{
+
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    height: 100vh;
+    background-color: #e3e7eb;
+    
+    
+}
+.body2{
+
+    margin: 20px 50px 40px 20px;
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    font-size: 15px;
+    gap: 15px;
+    border-radius: 10px;
+    
+}
+.checkbox-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 10px; 
+}
+
+.checkbox-item {
+    display: inline-block;
+}
+.button{
+    width: 100px;
+    border-radius: 20px;
+    background-color: black;
+    color: aliceblue;
+    
+}
+.button-area {
+    text-align: right;
+}
+.navbar {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    align-items: center;
+    list-style: none;
+    background-color: #f4f3f3;
+    color: black;
+    
+}
+.navbar a {
+    color: black;
+    font-size: larger;
+    text-decoration: none;
+    padding: 10px 10px; 
+    display: inline-block;
+    
+  }
+  .navbar ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+  }
+  body {
+    margin: 0;
+    padding: 0;
+    /* background-color: #e2e6ea; */
+  }
+  .navbar-contact{
+    background-color: black;
+    color: #fffdfd;
+    width: 110px;
+    height: 35px;
+    border-radius: 20px;
+  }
+  .menu a:hover {
+    color: rgb(255, 17, 0);
+  }
+ 
