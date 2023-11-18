@@ -5,33 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>project</title>
     <link rel="stylesheet" href="css/project2.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"/>
 </head>
 <body>
     <nav>
-        <div class="navbar">
+        <div class="navbar-container">
             <div class="navbar" >
-                <img src="assets/icon/dumbways.png" alt="Dumbways" width="50px" style="margin: 10px 10px 0 10px;">
-                <ul class="menu">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="myProject.html">My Project</a></li>
-                </ul>
-                
+                <img src="assets/icon/dumbways.png" alt="Dumbways" width="50px" style="margin: 0 20px 0 20px;">
+                <div class="menu">
+                    <ul style="gap: 20px;">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="myProject.html">My Project</a></li>
+                        <li><a href="testimonial.html">My Testimonial</a></li>
+                    </ul>
+                </div>
             </div>
-            <div style="text-align: right;">
-                <a href="contact.html"><button class="navbar-contact">Contact Me</button></a>
+            <div class="navbar-contact" >
+                <a href="contact.html" class="contact">Contact Me</a>
+                <i class="fa-solid fa-bars fa-2x" id="hamburger" style="cursor: pointer;" onclick="isOpen()"></i>
             </div>
         </div>
     </nav>
+        <div class="navbar-hp" id="navbarHp" >
+            <a href="index.html" class="navbar-a">Home</a>
+            <a href="myProject.html" class="navbar-a">myProject</a>
+            <a href="contact.html" class="navbar-a">Contact Me</a>
+            <a href="testimonial.html" class="navbar-a">My Testimonial</a>
+        </div>
 
     <br>
     <br>
     <h1 style="text-align: center;">Project</h1>
 
-    <div style="display: flex; justify-content: center;">
-        <div>
+    
+        <div class="content">
             <div class="container-atas">
                 <div class="icon-kiri">
-                    <img src="assets/img/Bulan.jpg" alt="foto profile" class="img">
+                    <img src="assets/img/Bulan.jpg" alt="foto profile" class="img-content">
                 </div>
 
                 <div class="icon-kanan">
@@ -69,6 +81,6 @@
         </div>
     </div>
     
-    
+<script src="js/navbar.js"></script>
 </body>
 </html>

@@ -7,31 +7,43 @@ function submint(event){
     event.preventDefault()
 
     let inputName = document.getElementById("inputName").value;
-    let inputStart = document.getElementById("start-date").date;
-    let inputEnd = document.getElementById("end-date").date;
+    let inputStart = document.getElementById("start-date").value;
+    let inputEnd = document.getElementById("end-date").value;
     let inputDescription = document.getElementById("description").value;
-    let inputCheckBox = document.querySelectorAll("checkbox").checked;
+    // let inputCheckBox = document.querySelectorAll('input[type="checkbox"]:checked');
     let inputContent = document.getElementById("image").files;
-
+ 
+    
     inputContent = URL.createObjectURL(inputContent[0]);
-    console.log("image", inputContent)
+    let tanggalMulai = new Date(inputStart)
+    let tanggalSelesai = new Date(inputEnd) 
 
-    console.log(inputName)
-    console.log(inputDescription)
-    console.log(inputContent)
+    let rentang = hitungRentang(tanggalMulai,tanggalSelesai)
     const blog  = {
         name: inputName,
-        start: inputStart,
-        end: inputEnd, 
+        range: rentang,
         description: inputDescription,
-        file: inputContent
+        file: inputContent,
     }
 
+    // console.log("icon",checkboxStatus)
     dataProject.push(blog)
-    console.log("dataProject", dataProject)
     renderBlog()
 
     
+}
+function hitungRentang(tanggalMulai,tanggalSelesai){
+    const startYear = tanggalMulai.getFullYear();
+    const startMonth = tanggalMulai.getMonth();
+
+    const endYear = tanggalSelesai.getFullYear();
+    const endMonth = tanggalSelesai.getMonth();
+
+    const Year = endYear - startYear ;
+    const month = endMonth - startMonth;
+
+    const totalDate = Year * 12 + month;
+    return totalDate;
 }
 
 
@@ -45,8 +57,12 @@ function renderBlog(){
             <div class="card" >
                 <div>
                     <img src="${dataProject[i].file}" alt="" class="img">
+                    <br>
+                    <p>durasi : ${dataProject[i].range} bulan</p>
+                    <br>
                     <a href="project.html" style=" color : black;">${dataProject[i].name}</a>
-                    <p>${dataProject[i].description}</p>
+                    <br>
+                    <p class="p">${dataProject[i].description}</p>
     
                     <div style="padding-bottom: 15px;">
                         <img src="assets/icon/playstore.png" alt="playsotre" width="20px">
