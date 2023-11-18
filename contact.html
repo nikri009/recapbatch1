@@ -4,49 +4,64 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"/>
 </head>
 <body>
     <nav>
-        <div class="navbar">
+        <div class="navbar-container">
             <div class="navbar" >
-                <img src="assets/icon/dumbways.png" alt="Dumbways" width="50px" style="margin: 10px 10px 0 10px;">
-                <ul class="menu">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="#">My Project</a></li>
-                </ul>
-                
+                <img src="assets/icon/dumbways.png" alt="Dumbways" width="50px" style="margin: 0 20px 0 20px;">
+                <div class="menu">
+                    <ul style="gap: 20px;">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="myProject.html">My Project</a></li>
+                        <li><a href="testimonial.html">My Testimonial</a></li>
+                    </ul>
+                </div>
             </div>
-            <div style="text-align: right;">
-                <a href="contact.html"><button class="navbar-contact">Contact Me</button></a>
+            <div class="navbar-contact" >
+                <a href="contact.html" class="contact">Contact Me</a>
+                <i class="fa-solid fa-bars fa-2x" id="hamburger" style="cursor: pointer;" onclick="isOpen()"></i>
             </div>
         </div>
     </nav>
+        <div class="navbar-hp" id="navbarHp" >
+            <a href="index.html" class="navbar-a" >Home</a>
+            <a href="myProject.html" class="navbar-a">myProject</a>
+            <a href="contact.html" class="navbar-a" style="background-color: orangered;">Contact Me</a>
+            <a href="testimonial.html" class="navbar-a">My Testimonial</a>
+        </div>
 
     <div class="body">
         <form>
             <h3 class="body">GET IN TOUCH</h3>
             <div class="body2">
                 <label>Name</label>
-                <input type="text" class="text-area">
+                <input type="text" class="text-area" id="inputNama">
                 <label>Email</label>
-                <input type="text" class="text-area">
+                <input type="text" class="text-area" id="inputEmail">
                 <label>Phone Number</label>
-                <input type="text"class="text-area" >
+                <input type="text"class="text-area" id="inputPhone">
                 <label >Subject</label>
-                <select class="text-area">
-                    <option value="">frontend Develover</option>
-                    <option value="">Backend Develover</option>
-                    <option value="">fullstack Develover</option>
-                    
+                <select class="text-area" id="inputSubject">
+                    <option></option>
+                    <option >frontend Develover</option>
+                    <option >Backend Develover</option>
+                    <option >fullstack Develover</option>
                 </select>
                 <label>your massege</label>
-                <textarea style="width: auto; height: 100px;"></textarea>
+                <textarea style="width: auto; height: 100px;" id="inputMessege"></textarea>
             </div>  
             <div class="area-button">
-                <input type="button" value="submit" class="button">
+                <input type="button" value="submit" class="button" onclick="data()">
             </div>
         </form>
 </div>
+<script src="js/contact.js"></script>
+<script src="js/navbar.js"></script>
 </body>
 </html>
+
