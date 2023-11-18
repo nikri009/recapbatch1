@@ -28,25 +28,26 @@
             <h3 class="body">GET IN TOUCH</h3>
             <div class="body2">
                 <label>Name</label>
-                <input type="text" class="text-area">
+                <input type="text" class="text-area" id="inputNama">
                 <label>Email</label>
-                <input type="text" class="text-area">
+                <input type="text" class="text-area" id="inputEmail">
                 <label>Phone Number</label>
-                <input type="text"class="text-area" >
+                <input type="text"class="text-area" id="inputPhone">
                 <label >Subject</label>
-                <select class="text-area">
-                    <option value="">frontend Develover</option>
-                    <option value="">Backend Develover</option>
-                    <option value="">fullstack Develover</option>
-                    
+                <select class="text-area" id="inputSubject">
+                    <option></option>
+                    <option >frontend Develover</option>
+                    <option >Backend Develover</option>
+                    <option >fullstack Develover</option>
                 </select>
                 <label>your massege</label>
-                <textarea style="width: auto; height: 100px;"></textarea>
+                <textarea style="width: auto; height: 100px;" id="inputMessege"></textarea>
             </div>  
             <div class="area-button">
-                <input type="button" value="submit" class="button">
+                <input type="button" value="submit" class="button" onclick="data()">
             </div>
         </form>
 </div>
+<script src="contact.js"></script>
 </body>
 </html>
