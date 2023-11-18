@@ -29,16 +29,16 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 80%;
+  width: 100%;
 }
 .card2 {
     text-align: center;
     width: 50%;
-    height: 100%;
+    height: auto;
     border: 1px solid #ccc;
     border-radius: 5px;
     padding: 1px;
-    margin: 10px 10px 30px 30px;
+    margin: 10px 10px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 .btm {
@@ -113,7 +113,7 @@ a {
 
 }
 .menu {
-  width: 50%;
+  width: 30%;
   margin-left: 10px;
 }
 

@@ -28,3 +28,5 @@ function data(){
     a.href = `mailto:${inputEmail}?subject=${inputSubject}&body=${inputMessege}`
     a.click()
 }
+
+
