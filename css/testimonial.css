@@ -127,6 +127,24 @@ body {
     justify-content: center;
 }
 
+.rating {
+  justify-content: center;
+}
+.rating-container{
+  justify-content: center;
+  display: flex;
+  
+}
+.rating-button {
+  width: 50px;
+  height: 20px;
+  display: flex;
+  margin: 10px;
+  justify-content: center;
+  background-color: black;
+  color: #f4f3f3;
+}
+
 @media only screen and ( max-width: 650px){
 
   .card {
