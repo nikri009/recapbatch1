@@ -23,6 +23,9 @@
               color: black !important;
               text-decoration: none;
           }
+          .navbar-hp{
+          display: none;
+         }
       </style>
 
 </head>
@@ -33,18 +36,18 @@
       <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+            <a class="nav-link active" aria-current="page" href="/home">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="addProject.html">AddProject</a>
+            <a class="nav-link" href="/project">AddProject</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="testimonial.html">Testimonial</a>
+            <a class="nav-link" href="/testimonial">Testimonial</a>
           </li>
         </ul>
         <div >
           <button class="btn btn-outline-success" type="submit" >
-            <a href="contact.html" class="lol">Contact Me</a>
+            <a href="/contact-me" class="lol">Contact Me</a>
           </button>
         </div>
       </div>
@@ -55,11 +58,11 @@
     
   </nav>
   <div class="navbar-hp" id="navbarHp" >
-    <a href="index.html" class="navbar-a">Home</a>
-    <a href="addProject.html" class="navbar-a">AddProject</a>
-    <a href="contact.html" class="navbar-a">Contact Me</a>
-    <a href="testimonial.html" class="navbar-a" style="background-color: orangered;">Testimonial</a>
-</div>
+    <a href="/home" class="navbar-a">Home</a>
+    <a href="/project" class="navbar-a" style="background-color: orangered;">AddProject</a>
+    <a href="/contact-me" class="navbar-a">Contact Me</a>
+    <a href="/testimonial" class="navbar-a" >Testimonial</a>
+  </div>
 
     <!-- from  -->
     <div style="background-color: #e3e7eb;">
@@ -67,11 +70,11 @@
       <h1 style="text-align: center;">Add My Project</h1>
             <div class="container-sm" style="width: 60%; border: 1px solid #000; margin-top: 50px; margin-bottom: 50px; border-radius: 20px; background-color: #fff; ">
               <div class="custom-form">
-                    <form class="form" onsubmit="submint(event)">
+                    <form class="form" method="post" action="/project">
                           <div class="row mb-3">
                             <div class="col-mb-3">
                               <label for="inputEmail3" class="col-sm-2 col-form-label" style="width: 40%;">Project Name</label>
-                              <input type="text" class="form-control" id="inputName" rows="3">
+                              <input type="text" class="form-control" id="inputName" name="inputName" rows="3">
                             </div>
                           </div>
 
@@ -79,11 +82,11 @@
                           <div style="display: flex;">
                             <div class="form-control" style="border: none; width: 50%;" >
                               <label for="tanggalPertama">Start Date</label>
-                              <input type="date" class="form-control" id="start-date" name="tanggalPertama">
+                              <input type="date" class="form-control" id="start-date" name="start-date">
                             </div>
                             <div class="form-control" style="border: none;  width: 50%;" >
                               <label for="tanggalKedua">End Date</label>
-                              <input type="date" class="form-control" id="end-date" name="tanggalKedua">
+                              <input type="date" class="form-control" id="end-date" name="end-date">
                             </div>
                           </div>
                         </div>
@@ -91,7 +94,7 @@
                           <div class="row mb-3">
                             <div class="form-group">
                               <label for="exampleFormControlTextarea1">Description</label>
-                              <textarea class="form-control" id="description" rows="3"></textarea>
+                              <textarea class="form-control" id="description" name="description" rows="3"></textarea>
                             </div>
                           </div>
 
@@ -136,7 +139,7 @@
 
                           <div class="row mb-3">
                             <div class="input-group mb-2">
-                              <input type="file" class="form-control" id="image">
+                              <input type="file" class="form-control" id="image" name="image">
                               <label class="input-group-text" for="inputGroupFile02">Upload</label>
                             </div>
                           </div>
@@ -151,16 +154,16 @@
               <br>
       </div>
 
-      <div>
+      {{!-- <div>
         <br>
         <h1 style="text-align: center;">Project</h1>
         <div id="contents" style="display: flex; flex-wrap: wrap; justify-content: center;">
         
         </div>
-      </div>
+      </div> --}}
         
 
-    <script src="assets/js/project.js"></script>
+    {{!-- <script src="assets/js/project.js"></script> --}}
     <script src="assets/js/navbar.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" 
     integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>

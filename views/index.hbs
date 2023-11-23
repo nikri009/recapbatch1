@@ -22,6 +22,9 @@
               color: black !important;
               text-decoration: none;
           }
+          .navbar-hp{
+          display: none;
+         }
       </style>
 </head>
 <body>
@@ -31,18 +34,18 @@
       <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+            <a class="nav-link active" aria-current="page" href="/home">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="addProject.html">AddProject</a>
+            <a class="nav-link" href="/project">AddProject</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="testimonial.html">Testimonial</a>
+            <a class="nav-link" href="/testimonial">Testimonial</a>
           </li>
         </ul>
         <div >
           <button class="btn btn-outline-success" type="submit" >
-            <a href="contact.html" class="lol">Contact Me</a>
+            <a href="/contact-me" class="lol">Contact Me</a>
           </button>
         </div>
       </div>
@@ -53,11 +56,11 @@
     
   </nav>
   <div class="navbar-hp" id="navbarHp" >
-    <a href="index.html" class="navbar-a">Home</a>
-    <a href="addProject.html" class="navbar-a">AddProject</a>
-    <a href="contact.html" class="navbar-a">Contact Me</a>
-    <a href="testimonial.html" class="navbar-a" style="background-color: orangered;">Testimonial</a>
-</div>
+    <a href="/home" class="navbar-a" style="background-color: orangered;">Home</a>
+    <a href="/project" class="navbar-a">AddProject</a>
+    <a href="/contact-me" class="navbar-a">Contact Me</a>
+    <a href="/testimonial" class="navbar-a" >Testimonial</a>
+  </div>
     
     <div class="container">
       <div class="card mb-3" style="max-width: 650px;">
@@ -96,6 +99,37 @@
         </div>
       </div>
     
+    </div>
+
+    <div>
+        <br>
+        <h1 style="text-align: center;">Project</h1>
+        <div id="contents" style="display: flex; flex-wrap: wrap; justify-content: center;">
+          <div class="container-card ">
+              <div class="card-project" >
+                  <div class="card-active">
+                      <img src="assets/img/Bulan.jpg" alt="" class="img-project">
+                      <br>
+                      <p>durasi : 2 bulan</p>
+                      <br>
+                      <a href="/detail-card" style=" color : black; text-decoration: none; ">{{data.title}}</a>
+                      <br>
+                      <p class="p">{{data.content}}</p>
+      
+                      <div style="padding-bottom: 15px;">
+                          <img src="assets/icon/playstore.png" alt="playsotre" width="20px">
+                          <img src="assets/icon/android.png" alt="androit" width="20px">
+                          <img src="assets/icon/java.png" alt="java" width="20px">
+                      </div>
+                  
+                      <div style="text-align: center; padding-bottom: 20px;">
+                          <input type="button" value="edit" style="background-color: black; color: #ffff; border-radius: 10px;width: 40%; height: 30px;">
+                          <input type="button" value="delete" style="background-color: black; color: #ffff; border-radius: 10px;width: 40%;  height: 30px;">
+                      </div>
+                  </div>
+              </div>
+          </div>
+        </div>
     </div>
     
 

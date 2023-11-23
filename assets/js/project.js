@@ -81,14 +81,14 @@ function renderBlog(){
                     <br>
                     <p>durasi : ${dataProject[i].range} bulan</p>
                     <br>
-                    <a href="project.html" style=" color : black; text-decoration: none; ">${dataProject[i].name}</a>
+                    <a href="/project-detail" style=" color : black; text-decoration: none; ">${dataProject[i].name}</a>
                     <br>
                     <p class="p">${dataProject[i].description}</p>
     
                     <div style="padding-bottom: 15px;">
-                        <img src="/day10/assets/icon/playstore.png" alt="playsotre" width="20px">
-                        <img src="/day10/assets/icon/android.png" alt="androit" width="20px">
-                        <img src="/day10/assets/icon/java.png" alt="java" width="20px">
+                        <img src="assets/icon/playstore.png" alt="playsotre" width="20px">
+                        <img src="assets/icon/android.png" alt="androit" width="20px">
+                        <img src="assets/icon/java.png" alt="java" width="20px">
                     </div>
                 
                     <div style="text-align: center; padding-bottom: 20px;">
