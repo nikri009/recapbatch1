@@ -24,6 +24,14 @@
           }
           .navbar-hp{
           display: none;
+          
+         }
+         .btnCard {
+          background-color: black;
+          color: #ffff;
+          border-radius: 10px;
+          width: 80%; 
+          height: 30px;
          }
       </style>
 </head>
@@ -34,7 +42,7 @@
       <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/home">Home</a>
+            <a class="nav-link active" aria-current="page" href="/">Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/project">AddProject</a>
@@ -56,7 +64,7 @@
     
   </nav>
   <div class="navbar-hp" id="navbarHp" >
-    <a href="/home" class="navbar-a" style="background-color: orangered;">Home</a>
+    <a href="/" class="navbar-a" style="background-color: orangered;">Home</a>
     <a href="/project" class="navbar-a">AddProject</a>
     <a href="/contact-me" class="navbar-a">Contact Me</a>
     <a href="/testimonial" class="navbar-a" >Testimonial</a>
@@ -105,30 +113,37 @@
         <br>
         <h1 style="text-align: center;">Project</h1>
         <div id="contents" style="display: flex; flex-wrap: wrap; justify-content: center;">
+          {{#each data}}
           <div class="container-card ">
               <div class="card-project" >
                   <div class="card-active">
                       <img src="assets/img/Bulan.jpg" alt="" class="img-project">
                       <br>
-                      <p>durasi : 2 bulan</p>
+                      <p>durasi : {{this.date}}</p>
                       <br>
-                      <a href="/detail-card" style=" color : black; text-decoration: none; ">{{data.title}}</a>
+                      <a href="/detail" style=" color : black; text-decoration: none; ">{{this.name}}</a>
                       <br>
-                      <p class="p">{{data.content}}</p>
+                      <p class="p">{{this.desc}}</p>
       
                       <div style="padding-bottom: 15px;">
-                          <img src="assets/icon/playstore.png" alt="playsotre" width="20px">
-                          <img src="assets/icon/android.png" alt="androit" width="20px">
-                          <img src="assets/icon/java.png" alt="java" width="20px">
+                          <img src="{{this.checkbox1}}"  width="20px">
+                          <img src="{{this.checkbox2}}"  width="20px">
+                          <img src="{{this.checkbox3}}"  width="20px">
+                          <img src="{{this.checkbox4}}"  width="20px">
                       </div>
                   
-                      <div style="text-align: center; padding-bottom: 20px;">
-                          <input type="button" value="edit" style="background-color: black; color: #ffff; border-radius: 10px;width: 40%; height: 30px;">
-                          <input type="button" value="delete" style="background-color: black; color: #ffff; border-radius: 10px;width: 40%;  height: 30px;">
+                      <div style="display: flex; text-align: center; padding-bottom: 20px;">
+                      
+                          <button class="btnCard" style="margin-left: 10px;"><a href="/update/{{@index}}" class="lol">update</a></button>
+                        
+                        <form method="post" action="/delete/{{@index}}" style="width: 110%; margin-left: 10px; margin-right:0;">
+                          <button class="btnCard"><a class="lol">delete</a></button>
+                        </form>
                       </div>
                   </div>
               </div>
           </div>
+          {{/each}}
         </div>
     </div>
     

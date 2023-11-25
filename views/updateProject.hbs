@@ -67,14 +67,15 @@
     <!-- from  -->
     <div style="background-color: #e3e7eb;">
       <br>
-      <h1 style="text-align: center;">Add My Project</h1>
+      <h1 style="text-align: center;">Update My Project</h1>
             <div class="container-sm" style="width: 60%; border: 1px solid #000; margin-top: 50px; margin-bottom: 50px; border-radius: 20px; background-color: #fff; ">
               <div class="custom-form">
-                    <form class="form" method="post" action="/project">
+                    <form class="form" method="post" action="/update">
+                    <input type="hidden" name="id" value="{{data.id}}">
                           <div class="row mb-3">
                             <div class="col-mb-3">
                               <label for="inputEmail3" class="col-sm-2 col-form-label" style="width: 40%;">Project Name</label>
-                              <input type="text" class="form-control" id="inputName" name="inputName" rows="3" required>
+                              <input type="text" class="form-control" id="inputName" name="inputName" rows="3" value="{{data.name}}" required>
                             </div>
                           </div>
 
@@ -82,11 +83,11 @@
                           <div style="display: flex;">
                             <div class="form-control" style="border: none; width: 50%;" >
                               <label for="tanggalPertama">Start Date</label>
-                              <input type="date" class="form-control" id="start-date" name="startDate" required>
+                              <input type="date" class="form-control" id="start-date" name="startDate" value="{{data.startDate}}" required>
                             </div>
                             <div class="form-control" style="border: none;  width: 50%;" >
                               <label for="tanggalKedua">End Date</label>
-                              <input type="date" class="form-control" id="end-date" name="endDate" required>
+                              <input type="date" class="form-control" id="end-date" name="endDate" value="{{data.endDate}}" required>
                             </div>
                           </div>
                         </div>
@@ -94,7 +95,7 @@
                           <div class="row mb-3">
                             <div class="form-group">
                               <label for="exampleFormControlTextarea1">Description</label>
-                              <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
+                              <textarea class="form-control" id="description" name="description" rows="3" required>{{data.desc}}</textarea>
                             </div>
                           </div>
 

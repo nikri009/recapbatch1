@@ -35,7 +35,7 @@
       <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/home">Home</a>
+            <a class="nav-link active" aria-current="page" href="/">Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/project">AddProject</a>
@@ -57,8 +57,8 @@
     
   </nav>
   <div class="navbar-hp" id="navbarHp" >
-    <a href="/home" class="navbar-a">Home</a>
-    <a href="/project" class="navbar-a" style="background-color: orangered;">AddProject</a>
+    <a href="/" class="navbar-a">Home</a>
+    <a href="/project" class="navbar-a">AddProject</a>
     <a href="/contact-me" class="navbar-a">Contact Me</a>
     <a href="/testimonial" class="navbar-a" >Testimonial</a>
   </div>
@@ -69,16 +69,10 @@
                 <div class="icon-kiri">
                     <img src="assets/img/Bulan.jpg" alt="foto profile" class="img-content">
                 </div>
-
+              
                 <div class="icon-kanan">
                     <label for="duration">Duration</label>
-                    <div style="display: flex;">
-                        <img src="assets/icon/icon2.png" alt="duration" class="icon"><p>12 jan 2021 - 11 feb 2021</p>
-                        
-                    </div>
-                    <div style="display: flex;">
-                        <img src="assets/icon/android.png" alt="month" class="icon"><p>1 month</p>
-                    </div>
+                    <p>{{data.date}}</p>
                     <label for="icon">Technologies</label>
                     <div style="display: flex;">
                         <img src="assets/icon/atom.png" alt="React JS" class="icon"><p>React JS</p>
@@ -90,7 +84,7 @@
                     </div>
                 </div>
             </div>
-
+            
             <div class="p">
                 <p> Perkenalkan nama saya Nikri Aria Pratama, saya tinggal di sasak panjang kecamatan tajurhalang Kabupaten bogor. 
                     Kesibukan saya saat ini adalah kuliah dan belajar untuk menjadi seorang programer yang handal, 
