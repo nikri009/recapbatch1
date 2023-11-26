@@ -3,11 +3,16 @@ const express = require( 'express' )
 const path = require('path')
 const app = express()
 const port = 3000
+const config = require('./src/config/config.json')
+const { Sequelize, QueryTypes } = require('sequelize')
+const sequelize = new Sequelize(config.development)
+
+
 
 app.set('view engine', 'hbs')
-app.set('views', path.join(__dirname,'views'))
+app.set('views', path.join(__dirname,'src/views'))
 
-app.use("/assets",express.static('assets'))
+app.use("/assets",express.static('src/assets'))
 app.use(express.urlencoded({extended: false}))
 
 app.get('/',home)
@@ -25,10 +30,12 @@ app.post('/delete/:id',deleteCard)
 let data = [];
 
 
-function home(req,res){
+async function home(req,res){
+    const query = 'SELECT *from projects'
+    const obj = await sequelize.query(query,{type: QueryTypes.SELECT})
+    
 
-
-    res.render('index', {data})
+    res.render('index', {data: obj})
 }
 function project(req,res){
     res.render('addProject')
@@ -60,10 +67,8 @@ function update(req,res){
     const startDate = req.body.startDate 
     const endDate = req.body.endDate 
     const desc = req.body.description
-    const checkbox1 = req.body.checkbox1
-    const checkbox2 = req.body.checkbox2
-    const checkbox3 = req.body.checkbox3
-    const checkbox4 = req.body.checkbox4
+    const checkbox = req.body.checkbox
+    
     
     let date =  calculateDuration(startDate, endDate)
     
@@ -72,10 +77,8 @@ function update(req,res){
         name,
         date,
         desc,
-        checkbox1,
-        checkbox2,
-        checkbox3,
-        checkbox4,
+        checkbox,
+
     }
     
     res.redirect('/') 
@@ -85,11 +88,9 @@ function prosesProject(req,res){
     const startDate = req.body.startDate 
     const endDate = req.body.endDate 
     const desc = req.body.description
-    const checkbox1 = req.body.checkbox1
-    const checkbox2 = req.body.checkbox2
-    const checkbox3 = req.body.checkbox3
-    const checkbox4 = req.body.checkbox4
-    
+    const checkbox = req.body.checkbox
+
+    console.log(startDate)
     let date =  calculateDuration(startDate, endDate)
     
      
@@ -97,10 +98,7 @@ function prosesProject(req,res){
         name,
         date,
         desc,
-        checkbox1,
-        checkbox2,
-        checkbox3,
-        checkbox4,
+        checkbox,
         startDate,
         endDate
     }

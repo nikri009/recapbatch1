@@ -76,16 +76,18 @@
                     <label for="duration">Duration</label>
                     <p>{{data.date}}</p>
                     <label for="icon">Technologies</label>
-                    <div style="display: flex; flex-wrap: wrap; justify-content: center;">
-                          <img src="{{data.checkbox1}}"  class="icon">
-                          <img src="{{data.checkbox2}}"  class="icon">
-                          <img src="{{data.checkbox3}}"  class="icon">
-                          <img src="{{data.checkbox4}}"  class="icon">
-                    </div>
+                     
+                    <span class="badge" style="display: flex; flex-wrap: wrap; justify-content: center;">
+                    {{#each this.data.checkbox}}
+                            <img src="{{{this}}}" style="width: 20px; margin:5px;">
+                    {{/each}}     
+                    </span>
+                    
                 </div>
             </div>
             <br>
             <div class="p">
+                <h4>{{data.name}}</h4>
                 <p>{{data.desc}}</p>
             </div>
         </div>

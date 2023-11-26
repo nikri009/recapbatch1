@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>project-detail</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"/>
+        <style>
+          .lol{
+              text-decoration: none;
+              color: #fff;
+          }
+          .lol:hover{
+              color: black;
+          }
+          .btn-outline-success:hover {
+              background-color: #fff !important;
+              color: black !important;
+              text-decoration: none;
+          }
+          .container{
+            display: flex;
+            flex-direction: column;
+          }
+          .button{
+            background-color: black;
+            border-radius: 10px;
+          }
+         .navbar-hp{
+          display: none;
+         }
+         .link{
+          text-decoration: none;
+          color: rgb(255, 255, 255);
+         }
+         .link:hover{
+          color: black;
+         }
+         .button:hover{
+          background-color: #fff;
+         }
+      </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+          <img src="assets/icon/dumbways.png" alt="dumbways" class="navbar-brand" style="width: 50px;" >
+          <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/project">AddProject</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/testimonial">Testimonial</a>
+              </li>
+            </ul>
+            <div >
+              <button class="btn btn-outline-success" type="submit" >
+                <a href="/contact-me" class="lol">Contact Me</a>
+              </button>
+            </div>
+          </div>
+          <button class="navbar-toggler"  onclick="isOpen()" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        </div>
+        
+      </nav>
+      <div class="navbar-hp" id="navbarHp" >
+        <a href="/" class="navbar-a">Home</a>
+        <a href="/project" class="navbar-a" style="background-color: orangered;">AddProject</a>
+        <a href="/contact-me" class="navbar-a">Contact Me</a>
+        <a href="/testimonial" class="navbar-a" >Testimonial</a>
+      </div>
+
+      {{!-- your code --}}
+<div class="container" >
+  <h3>Project</h3>
+
+  <div >
+    <button class="button"><a href="/project" class="link">Add Project</a></button>
+  </div>
+
+  <div class="card mb-3" style="max-width: 540px;">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img src="..." class="img-fluid rounded-start" alt="...">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+          <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script src="assets/js/project.js"></script>
+    <script src="assets/js/navbar.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" 
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+</html>

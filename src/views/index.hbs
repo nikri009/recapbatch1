@@ -123,15 +123,12 @@
                       <br>
                       <a href="/detail/{{@index}}" style=" color : black; text-decoration: none; ">{{this.name}}</a>
                       <br>
-                      <p class="p">{{this.desc}}</p>
-      
-                      <div style="padding-bottom: 15px;">
-                          <img src="{{this.checkbox1}}"  width="20px">
-                          <img src="{{this.checkbox2}}"  width="20px">
-                          <img src="{{this.checkbox3}}"  width="20px">
-                          <img src="{{this.checkbox4}}"  width="20px">
-                      </div>
-                  
+                      <p class="p">{{this.description}}</p>
+                    {{#each this.Technologies}}
+                     <span class="badge" style="margin: button 20px;">
+                      <img src="{{{this}}}" style="width: 20px; ">
+                     </span>
+                    {{/each}}
                       <div style="display: flex; text-align: center; padding-bottom: 20px;">
                       
                           <button class="btnCard" style="margin-left: 10px;"><a href="/update/{{@index}}" class="lol">update</a></button>
