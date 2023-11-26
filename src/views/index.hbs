@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"/>
+        <style>
+          .lol{
+              text-decoration: none;
+              color: #fff;
+          }
+          .lol:hover{
+              color: black;
+          }
+          .btn-outline-success:hover {
+              background-color: #fff !important;
+              color: black !important;
+              text-decoration: none;
+          }
+          .navbar-hp{
+          display: none;
+          
+         }
+         .btnCard {
+          background-color: black;
+          color: #ffff;
+          border-radius: 10px;
+          width: 80%; 
+          height: 30px;
+         }
+      </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <img src="/assets/icon/dumbways.png" alt="dumbways" class="navbar-brand" style="width: 50px;" >
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/project">AddProject</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/testimonial">Testimonial</a>
+          </li>
+        </ul>
+        <div >
+          <button class="btn btn-outline-success" type="submit" >
+            <a href="/contact-me" class="lol">Contact Me</a>
+          </button>
+        </div>
+      </div>
+      <button class="navbar-toggler"  onclick="isOpen()" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    </div>
+    
+  </nav>
+  <div class="navbar-hp" id="navbarHp" >
+    <a href="/" class="navbar-a" style="background-color: orangered;">Home</a>
+    <a href="/project" class="navbar-a">AddProject</a>
+    <a href="/contact-me" class="navbar-a">Contact Me</a>
+    <a href="/testimonial" class="navbar-a" >Testimonial</a>
+  </div>
+    
+    <div class="container">
+      <div class="card mb-3" style="max-width: 650px;">
+        <div class="row g-0">
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">Hai welcome to my profile</h5>
+              <p class="card-text" style="text-align: justify;">Perkenalkan nama saya Nikri Aria Pratama, saya tinggal di sasak panjang kecamatan tajurhalang Kabupaten bogor. 
+                Kesibukan saya saat ini adalah kuliah dan belajar untuk menjadi seorang programer yang handal, 
+                hobi saya adalah diam di rumah sambil bermain game. Kelebihan saya adalah saya orang yang sabar dalam menghadapi masalah, 
+                maka dari itu saya pikir saya cocok menjadi seorang programer. 
+                Do'a kan saya semoga dengan saya bisa memiliki skill yang baik dalam dunia industri sebagai programer.</p>
+
+                <div style="display: flex; flex-direction: column; " >
+                    <div class="download">
+                        <button class="btm">contact</button>
+                        <p>Download CV <a href="#"><img src="/assets/icon/icon2.png" alt="Download" style="width: 30px; margin: 0 10px 0 10px;"></a>
+                        </p>
+                    </div>
+                    <div>
+                        <a href="https://www.linkedin.com/in/nikri-a-195009182/"><img src="/assets/icon/linkedin.png" alt="linkedin" class="img"></a>
+                        <a href="https://www.instagram.com/nikri.dh.lah/"><img src="/assets/icon/instagram.png" alt="instagram" class="img"></a>
+                        <a href="https://www.facebook.com/nikri.ariapratama.9"><img src="/assets/icon/facebook.png" alt="facbook" class="img"></a>
+                        <a href="#"><img src="/assets/icon/twitter.png" alt="tweeter" class="img"></a>
+                    </div>
+                </div>  
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card2">
+                <img src="/assets/img/FotoProfile.jpg" class="img-card">
+                <p><b>Nikri Aria Pratama</b></p>
+                <p>Fullstack Developer</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+    </div>
+
+    <div>
+        <br>
+        {{!-- <h1 style="text-align: center;">Project</h1> --}}
+        <div id="contents" style="display: flex; flex-wrap: wrap; justify-content: center;">
+          {{#each data}}
+          <div class="container-card ">
+              <div class="card-project" >
+                  <div class="card-active">
+                      <img src="/assets/img/Bulan.jpg" alt="" class="img-project">
+                      <br>
+                      <p>durasi : {{this.date}}</p>
+                      <br>
+                      <a href="/detail/{{@index}}" style=" color : black; text-decoration: none; ">{{this.name}}</a>
+                      <br>
+                      <p class="p">{{this.description}}</p>
+                    {{#each this.Technologies}}
+                     <span class="badge" style="margin: button 20px;">
+                      <img src="{{{this}}}" style="width: 20px; ">
+                     </span>
+                    {{/each}}
+                      <div style="display: flex; text-align: center; padding-bottom: 20px;">
+                      
+                          <button class="btnCard" style="margin-left: 10px;"><a href="/update/{{@index}}" class="lol">update</a></button>
+                        
+                        <form method="post" action="/delete/{{@index}}" style="width: 110%; margin-left: 10px; margin-right:0;">
+                          <button class="btnCard"><a class="lol">delete</a></button>
+                        </form>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          {{/each}}
+        </div>
+    </div>
+    
+
+    <script src="/assets/js/navbar.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+</html>
