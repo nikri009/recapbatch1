@@ -14,7 +14,7 @@ app.get('/',home)
 app.get('/project',project)
 app.get('/contact-me',contact)
 app.get('/testimonial', testimonial)
-app.get('/detail',detailCard)
+app.get('/detail/:id',detailCard)
 app.get('/update/:id',updateBlog)
 
 app.post('/update',update)
@@ -40,7 +40,11 @@ function testimonial(req,res){
     res.render('testimonial')
 }
 function detailCard(req,res) {
-    res.render('project',{data})
+    const id = req.params.id
+
+    const dataIndex = data[parseInt(id)]
+    dataIndex.id = parseInt(id)
+    res.render('project',{data: dataIndex})
 }
 function updateBlog(req,res) {
     const id = req.params.id
