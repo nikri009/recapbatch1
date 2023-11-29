@@ -1,0 +1,146 @@
+.btn-outline-success {
+  background-color: black;
+  color: #fff;
+  border: 2px solid #000000 !important;
+  border-radius: 20px !important;
+  
+}
+.btn-outline-success:hover {
+  background-color: #fff !important;
+  color: black !important;
+}
+#hamburger {
+  display: none !important;
+}
+.navbar-hp {
+  display: none;
+}
+.navbar-a {
+  color: #ffff;
+  border: 2px solid white;
+  width: 100%;
+  text-align: center;
+  text-decoration: none;
+}
+
+.container {
+  display: flex;
+  align-items: center !important;
+  justify-content: center;
+  align-items: center;
+  
+}
+.mb-3{
+  margin: 20px 20px;
+}
+.card-body {
+  padding: 10px 25px 10px 25px;
+}
+
+.card2 {
+  text-align: center;
+  width: 80%;
+  height: 90%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 1px;
+  margin: 10px 10px 30px 30px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+.download {
+  display: flex;
+}
+.img-card {
+  width: 80%;
+  height: auto;
+  margin: 5px 0px 5px 0px;
+}
+.img {
+  width: 30px;
+}
+.btm {
+  width: 100px; 
+  height: 30px; 
+  background-color: rgb(36, 30, 30); 
+  border-radius: 20px; 
+  color: #fffdfd;
+  border: 0 10px 0 10px;
+
+}
+
+/* card project */
+.container-card {
+  display: flex;
+  width: 500px;
+  justify-content: center;
+
+}
+.card-project {
+    
+  flex-basis: 300px;
+  width: 50%; 
+  height: 450px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px 10px 10px 10px;
+  margin: 10px 10px 10px 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  
+} 
+#home{
+  display: none;
+}
+
+@media only screen and ( max-width: 995px){
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    width: auto;
+    align-items: center;
+  }
+  .card2{
+    justify-content: center !important;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center !important;
+  }
+
+ .card-body{
+    text-align: center;
+ }
+ .download {
+  text-align: center;
+  justify-content: center;
+ }
+ .img-card{
+  height: auto;
+ }
+ .container-fluid{
+  display: flex;
+ }
+ .navbar-toggler{
+  display: flex;
+ }
+
+  #hamburger {
+    display: block;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+  }
+
+  .navbar-hp {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: black;
+    
+  }
+ 
+  
+}
