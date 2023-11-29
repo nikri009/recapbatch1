@@ -10,13 +10,6 @@
         integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
         crossorigin="anonymous" referrerpolicy="no-referrer"/>
         <style>
-          .lol{
-              text-decoration: none;
-              color: #fff;
-          }
-          .lol:hover{
-              color: black;
-          }
           .btn-outline-success:hover {
               background-color: #fff !important;
               color: black !important;
@@ -24,7 +17,15 @@
           }
           .navbar-hp{
           display: none;
+          height: ;
           
+         }
+         .lol{
+          color: #fff !important;
+          text-decoration: none;
+         }
+         .lol:hover{
+          color: black !important;
          }
          .btnCard {
           background-color: black;
@@ -33,6 +34,16 @@
           width: 80%; 
           height: 30px;
          }
+         .btnCard:hover{
+          background-color: #fff !important;
+          color: black;
+         }
+         .active-card {
+          width: 100%;
+          height: 100%;
+          object-fit: cover !important;
+         }
+
       </style>
 </head>
 <body>
@@ -111,33 +122,35 @@
 
     <div>
         <br>
-        {{!-- <h1 style="text-align: center;">Project</h1> --}}
         <div id="contents" style="display: flex; flex-wrap: wrap; justify-content: center;">
           {{#each data}}
           <div class="container-card ">
-              <div class="card-project" >
-                  <div class="card-active">
-                      <img src="/assets/img/Bulan.jpg" alt="" class="img-project">
-                      <br>
-                      <p>durasi : {{this.date}}</p>
-                      <br>
-                      <a href="/detail/{{@index}}" style=" color : black; text-decoration: none; ">{{this.name}}</a>
-                      <br>
+              <div class="card-project">
+                    <div style="height: 50%;">
+                      <img src="/assets/img/{{image}}" alt="" class="active-card" >
+                    </div>
+                    <div style="width: 100%; height: 35%;">
+                    
+                      <p style="height: 10px;">durasi : {{this.startDate}} - {{this.endDate}}</p>
+                    
+                      <h4><a href="/detail/{{@index}}" style=" color : black; text-decoration: none; ">{{this.name}}</a></h4>
                       <p class="p">{{this.description}}</p>
-                    {{#each this.Technologies}}
-                     <span class="badge" style="margin: button 20px;">
-                      <img src="{{{this}}}" style="width: 20px; ">
-                     </span>
-                    {{/each}}
-                      <div style="display: flex; text-align: center; padding-bottom: 20px;">
-                      
-                          <button class="btnCard" style="margin-left: 10px;"><a href="/update/{{@index}}" class="lol">update</a></button>
-                        
-                        <form method="post" action="/delete/{{@index}}" style="width: 110%; margin-left: 10px; margin-right:0;">
-                          <button class="btnCard"><a class="lol">delete</a></button>
+                    </div>
+                    <div style="width: 100%; height: 15%;">
+                      <div style="display: flex;">
+                        {{#each this.technologies}}
+                        <span class="badge" style="margin: button 20px;">
+                          <img src="/assets/icon/{{{this}}}" style="width: 20px; ">
+                        </span>
+                        {{/each}}
+                      </div>
+                      <div style="display: flex; text-align: center; padding-top: 5px;">
+                        <button class="btnCard" style="margin-left: 10px;"><a href="/update/{{this.id}}" class="lol">update</a></button>
+                        <form method="post" action="/delete/{{this.id}}" style="width: 110%; margin-left: 10px; margin-right:0;">
+                          <button class="btnCard"><a style="text-decoration: none;">delete</a></button>
                         </form>
                       </div>
-                  </div>
+                    </div>
               </div>
           </div>
           {{/each}}

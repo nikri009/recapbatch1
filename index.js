@@ -4,7 +4,7 @@ const path = require('path')
 const app = express()
 const port = 3000
 const config = require('./src/config/config.json')
-const { Sequelize, QueryTypes } = require('sequelize')
+const { Sequelize, QueryTypes, DATE } = require('sequelize')
 const sequelize = new Sequelize(config.development)
 
 
@@ -21,7 +21,11 @@ app.get('/contact-me',contact)
 app.get('/testimonial', testimonial)
 app.get('/detail/:id',detailCard)
 app.get('/update/:id',updateBlog)
+app.get('/regist',regist)
+app.get('/login',login)
 
+app.post('/login',login)
+app.post('/regist',regist)
 app.post('/update',update)
 app.post('/project',prosesProject)
 
@@ -30,12 +34,52 @@ app.post('/delete/:id',deleteCard)
 let data = [];
 
 
+function regist(req,res){
+    res.render('regist')
+}
+function login(req,res){
+    res.render('login')
+}
+
 async function home(req,res){
     const query = 'SELECT *from projects'
-    const obj = await sequelize.query(query,{type: QueryTypes.SELECT})
-    
+    const data = await sequelize.query(query,{type: QueryTypes.SELECT})
+    // const days = calculateDuration(new Date(data.startDate), new Date(data.endDate))
+    // const {duration,unit} = chooseDuration(days)
+    var date = data.map(item=>{
+    const days = calculateDuration(new Date(item.startDate), new Date(item.endDate))
+    const {duration,unit} = chooseDuration(days)
 
-    res.render('index', {data: obj})
+    return {duration,unit}
+
+    })
+
+    // var date = data.map(dataDiri => {
+    // const days = calculateDuration(new Date(dataDiri.startDate), new Date(dataDiri.endDate))
+    // const {duration,unit} = chooseDuration(days)
+
+    //     return   {
+    //         ...data,
+    //         duration,
+    //         unit
+    //     }
+    //   })
+    // const dataLop = date.forEach(item=>{
+    //     item.duration = duration,
+    //     item.unit = unit,
+    //     item.name = name,
+    // })
+    // {duration,unit}
+
+    // console.log(data)
+    // console.log(date)
+    // const days = calculateDuration(new Date(dataDiri.startDate), new Date(dataDiri.endDate))
+    // const {duration,unit} = chooseDuration(days)
+    
+    // data.unshift(date)
+    
+   
+    res.render('index', {data,date},)
 }
 function project(req,res){
     res.render('addProject')
@@ -46,80 +90,86 @@ function contact(req,res){
 function testimonial(req,res){
     res.render('testimonial')
 }
-function detailCard(req,res) {
+async function detailCard(req,res) {
     const id = req.params.id
 
-    const dataIndex = data[parseInt(id)]
-    dataIndex.id = parseInt(id)
-    res.render('project',{data: dataIndex})
+    // const query=`SELECT *FROM projects where id=${id}`;
+    // const obj = sequelize.query(query,{type: QueryTypes.UPDATE})
+    const query = `SELECT *from projects`
+    const obj = await sequelize.query(query,{type: QueryTypes.SELECT})
+   
+    res.render('project',{data:obj[id]})
 }
-function updateBlog(req,res) {
-    const id = req.params.id
+async function updateBlog(req,res) {
+    const id = req.params.id 
 
-    const dataIndex = data[parseInt(id)]
-    dataIndex.id = parseInt(id)
-    res.render('updateProject',{data: dataIndex})
+    const query = `SELECT *from projects WHERE id=${id}`
+    const obj = await sequelize.query(query,{type: QueryTypes.SELECT})
+    res.render('updateProject',{data:obj[0]})
 }
 
-function update(req,res){
+async function update(req,res){
     const id = req.body.id
     const name = req.body.inputName 
     const startDate = req.body.startDate 
     const endDate = req.body.endDate 
-    const desc = req.body.description
-    const checkbox = req.body.checkbox
-    
-    
-    let date =  calculateDuration(startDate, endDate)
-    
-     
-    data[parseInt(id)] = {
-        name,
-        date,
-        desc,
-        checkbox,
+    const description = req.body.description
+    const technologies = req.body.checkbox
+    const image = "bulan.jpg";
 
-    }
+    const query = `UPDATE projects SET name='${name}', "startDate"='${startDate}', "endDate"='${endDate}', description='${description}',technologies='{${technologies}}',image='${image}'
+    WHERE id='${id}'`
     
+    const obj = await sequelize.query(query,{ type: QueryTypes.UPDATE })
+    
+    console.log(obj)
     res.redirect('/') 
+    
 }
-function prosesProject(req,res){
+async function prosesProject(req,res){
     const name = req.body.inputName 
     const startDate = req.body.startDate 
     const endDate = req.body.endDate 
-    const desc = req.body.description
-    const checkbox = req.body.checkbox
+    const description = req.body.description
+    const technologies = req.body.checkbox
+    const image = "bulan.jpg";
 
-    console.log(startDate)
-    let date =  calculateDuration(startDate, endDate)
-    
-     
-    const dataBlog = {
-        name,
-        date,
-        desc,
-        checkbox,
-        startDate,
-        endDate
-    }
-    
-    data.unshift(dataBlog)
+    const query = `INSERT INTO projects(name,"startDate","endDate",description,technologies,image) VALUES ('${name}','${startDate}','${endDate}','${description}','{${technologies}}','${image}')`
+    const obj = await sequelize.query(query,{ type: QueryTypes.INSERT })
+
+    // var arrayTanggalLahir = obj.map(function(dataDiri) {
+    //     return dataDiri.date;
+    //   })
+    // console.log('helooo',arrayTanggalLahir)
+   
     res.redirect('/') 
 }
 
 
 function calculateDuration(startDate, endDate) {
-    const start = new Date(startDate);
-    const end = new Date(endDate);
-    const diffTime = Math.abs(end - start);
-    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-    return `${diffDays} hari`
+    const timeDiff = endDate.getTime() - startDate.getTime()
+    return Math.floor(timeDiff / (1000 * 60 * 60 * 24))
+}
+function chooseDuration(days) {
+    const years = Math.floor(days / 365)
+    const months = Math.floor((days % 365) / 30)
+    const remainingDays = days % 30
+
+    if(years > 0) {
+        return { duration: years, unit: 'tahun'}
+    } else if (months > 0) {
+        return { duration: months, unit: 'bulan'}
+    } else {
+        return { duration: remainingDays, unit: 'hari'}
+    }
 }
 
-function deleteCard (req,res) {
+async function deleteCard (req,res) {
     const id = req.params.id
 
-    data.splice(id,1)
+    const query = `DELETE FROM projects WHERE id=${id}`
+    const obj = await sequelize.query(query,{ type: QueryTypes.DELETE })
+    console.log(obj)
     res.redirect('/')
 
 }
