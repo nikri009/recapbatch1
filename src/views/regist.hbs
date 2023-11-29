@@ -46,6 +46,14 @@
             <a class="nav-link" href="/testimonial">Testimonial</a>
           </li>
         </ul>
+        <div style="width:18%; text-align: center;">
+        {{#if isLogin}}
+          <h5 class="user">Welcome {{user.name}}</h5>
+          {{else}}
+          <a href="/regist" style="color: black; text-decoration: none; margin-right: 10px;"><b>Register</b></a>
+          <a href="/login" style="color: black; text-decoration: none;">Login</a>          
+        {{/if}}
+        </div>
         <div >
           <button class="btn btn-outline-success" type="submit" >
             <a href="/contact-me" class="lol">Contact Me</a>
@@ -66,24 +74,25 @@
   </div>
 
   {{!-- core code --}}
+
 <br>
 <br>
 <br>
   <div class="container mx-auto" style="max-width: 800px;">
-    <form style="width: 550px;">
+    <form style="width: 550px;" method="POST" action="/regist">
         <h3 style="text-align: center;">Register Your Account</h3>
         <br>
         <div class="mb-4">
             <label for="name" class="form-label">Name</label>
-            <input type="text" class="form-control" id="name" name="name" aria-describedby="emailHelp">
+            <input type="text" class="form-control" id="name" name="name" aria-describedby="emailHelp" required>
         </div>
         <div class="mb-4">
             <label for="email" class="form-label">Email address</label>
-            <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
+            <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="email" required>
         </div>
         <div class="mb-4">
             <label for="exampleInputPassword1" class="form-label">Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1">
+            <input type="password" class="form-control" id="password" name="password" required>
         </div>
         <br>
         <div style=" display:flex; justify-content: right;">

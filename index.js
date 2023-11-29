@@ -6,6 +6,9 @@ const port = 3000
 const config = require('./src/config/config.json')
 const { Sequelize, QueryTypes, DATE } = require('sequelize')
 const sequelize = new Sequelize(config.development)
+const bycrpt = require('bcrypt')
+const session = require('express-session')
+const flash = require('express-flash')
 
 
 
@@ -14,6 +17,19 @@ app.set('views', path.join(__dirname,'src/views'))
 
 app.use("/assets",express.static('src/assets'))
 app.use(express.urlencoded({extended: false}))
+app.use(flash())
+app.use(session({
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { 
+        secure:false,
+        maxAge: 1000 * 60 * 60 * 24
+        
+    }//jika sudah selesai di devploment ubah ke true
+  }))
+
+// routing
 
 app.get('/',home)
 app.get('/project',project)
@@ -21,8 +37,8 @@ app.get('/contact-me',contact)
 app.get('/testimonial', testimonial)
 app.get('/detail/:id',detailCard)
 app.get('/update/:id',updateBlog)
-app.get('/regist',regist)
-app.get('/login',login)
+app.get('/regist',registView)
+app.get('/login',loginView)
 
 app.post('/login',login)
 app.post('/regist',regist)
@@ -34,18 +50,11 @@ app.post('/delete/:id',deleteCard)
 let data = [];
 
 
-function regist(req,res){
-    res.render('regist')
-}
-function login(req,res){
-    res.render('login')
-}
 
 async function home(req,res){
     const query = 'SELECT *from projects'
     const data = await sequelize.query(query,{type: QueryTypes.SELECT})
-    // const days = calculateDuration(new Date(data.startDate), new Date(data.endDate))
-    // const {duration,unit} = chooseDuration(days)
+    
     var date = data.map(item=>{
     const days = calculateDuration(new Date(item.startDate), new Date(item.endDate))
     const {duration,unit} = chooseDuration(days)
@@ -77,9 +86,9 @@ async function home(req,res){
     // const {duration,unit} = chooseDuration(days)
     
     // data.unshift(date)
-    
-   
-    res.render('index', {data,date},)
+    const isLogin = req.session.isLogin
+    const user = req.session.user
+    res.render('index', {data,user, isLogin})
 }
 function project(req,res){
     res.render('addProject')
@@ -174,6 +183,56 @@ async function deleteCard (req,res) {
 
 }
 
+function registView(req,res){
+    res.render('regist')
+}
+async function regist(req,res){
+    const { name, email, password} = req.body
+    const salt = 10
+    bycrpt.hash(password, salt, async (err,hash)=>{
+        if(err){
+            req.flash('danger','Register failed')
+            res.redirect('/regist')
+        }
+        req.flash('success','Create Acount success')
+        const query = `INSERT INTO users(name,email,password) VALUES ('${name}','${email}','${hash}')`
+        const obj = await sequelize.query(query,{ type: QueryTypes.INSERT })
+
+    } )
+
+    res.redirect('/login')
+}
+function loginView(req,res){
+    res.render('login')
+}
+async function login(req,res){
+    const {email,password}=req.body
+    const query = `SELECT *FROM users WHERE email='${email}'`
+    const obj = await sequelize.query(query,{type: QueryTypes.SELECT})
+
+    if(obj.length == 0){
+        console.log("your Account not Found!!")
+        return res.redirect('/login')
+    }
+
+    bycrpt.compare(password,obj[0].password,(err,result)=>{
+        if(!result){
+            req.flash('denger','ERROR to login, please check your email or password again!!')
+            // console.error("your Password error!") proses jika salah password
+            return res.redirect('/login')
+        }
+        req.flash('success','Login success')
+        req.session.isLogin = true
+        req.session.user = {
+            name : obj[0].name,
+            email: obj[0].email
+        }
+        res.redirect('/')
+        
+    })
+
+    // res.redirect('login')
+}
 
 app.listen(port,()=>{
     console.log(`Example app Listening on port ${port}`)

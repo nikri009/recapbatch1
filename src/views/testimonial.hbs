@@ -29,6 +29,8 @@
         </style>
 </head>
 <body>
+
+
       <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
       <img src="/assets/icon/dumbways.png" alt="dumbways" class="navbar-brand" style="width: 50px;" >
@@ -41,9 +43,17 @@
             <a class="nav-link" href="/project">AddProject</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/testimonial">Testimonial</a>
+            <a class="nav-link" href="/testimonial"><b>Testimonial</b></a>
           </li>
         </ul>
+        <div style="width:18%; text-align: center;">
+        {{#if isLogin}}
+          <h5 class="user">Welcome {{user.name}}</h5>
+          {{else}}
+          <a href="/regist" style="color: black; text-decoration: none; margin-right: 10px;">Register</a>
+          <a href="/login" style="color: black; text-decoration: none;">Login</a>          
+        {{/if}}
+        </div>
         <div >
           <button class="btn btn-outline-success" type="submit" >
             <a href="/contact-me" class="lol">Contact Me</a>
@@ -64,6 +74,8 @@
   </div>
 
     <!-- your code -->
+
+  {{#if isLogin}}
     <br>
     <h2 style="text-align: center;">My Testimonial</h2>
 
@@ -94,7 +106,11 @@
 
     <div class="content" id="testimonial">
     </div>
+{{else}}
+<br>
+<h5 style="text-align: center;">please log in to your account</h5>
 
+{{/if}} 
 
     <script src="/assets/js/navbar.js"></script>
     <script src="/assets/js/testimonial.js"></script>

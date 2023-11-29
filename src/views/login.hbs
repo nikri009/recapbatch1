@@ -46,6 +46,14 @@
             <a class="nav-link" href="/testimonial">Testimonial</a>
           </li>
         </ul>
+        <div style="width:18%; text-align: center;">
+        {{#if isLogin}}
+          <h5 class="user">Welcome {{user.name}}</h5>
+          {{else}}
+          <a href="/regist" style="color: black; text-decoration: none; margin-right: 10px;">Register</a>
+          <a href="/login" style="color: black; text-decoration: none;"><b>Login</b></a>          
+        {{/if}}
+        </div>
         <div >
           <button class="btn btn-outline-success" type="submit" >
             <a href="/contact-me" class="lol">Contact Me</a>
@@ -59,27 +67,34 @@
     
   </nav>
   <div class="navbar-hp" id="navbarHp" >
-    <a href="/" class="navbar-a">Home</a>
+    <a href="/" class="navbar-a" id="home">Home</a>
     <a href="/project" class="navbar-a">AddProject</a>
     <a href="/contact-me" class="navbar-a">Contact Me</a>
     <a href="/testimonial" class="navbar-a" >Testimonial</a>
   </div>
 
   {{!-- core code --}}
+  {{#if messages.denger}}
+    <div class="alert alert-danger" role="alert">
+      <div class="container">
+      {{messages.denger}}
+      </div>
+    </div>
+{{/if}}
 <br>
 <br>
 <br>
   <div class="container mx-auto" style="max-width: 800px;">
-    <form style="width: 550px;">
-        <h3 style="text-align: center;">Register Your Account</h3>
+    <form style="width: 550px;" method="POST" action="/login">
+        <h3 style="text-align: center;">Login Your Account</h3>
         <br>
         <div class="mb-4">
             <label for="email" class="form-label">Email address</label>
-            <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
+            <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="email">
         </div>
         <div class="mb-4">
             <label for="exampleInputPassword1" class="form-label">Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1">
+            <input type="password" class="form-control" id="exampleInputPassword1" name="password">
         </div>
         <br>
         <div style=" display:flex; justify-content: right;">

@@ -19,6 +19,7 @@
           display: none;
           height: ;
           
+          
          }
          .lol{
           color: #fff !important;
@@ -43,7 +44,9 @@
           height: 100%;
           object-fit: cover !important;
          }
-
+         .user{
+          text-align: center;
+         }
       </style>
 </head>
 <body>
@@ -53,7 +56,7 @@
       <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/">Home</a>
+            <a class="nav-link active" aria-current="page" href="/"><b>Home</b></a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/project">AddProject</a>
@@ -62,7 +65,15 @@
             <a class="nav-link" href="/testimonial">Testimonial</a>
           </li>
         </ul>
-        <div >
+        <div style="width:18%; text-align: center;">
+        {{#if isLogin}}
+          <h5 class="user">Welcome {{user.name}}</h5>
+          {{else}}
+          <a href="/regist" style="color: black; text-decoration: none; margin-right: 10px;">Register</a>
+          <a href="/login" style="color: black; text-decoration: none;">Login</a>          
+        {{/if}}
+        </div>
+        <div>
           <button class="btn btn-outline-success" type="submit" >
             <a href="/contact-me" class="lol">Contact Me</a>
           </button>
@@ -80,6 +91,15 @@
     <a href="/contact-me" class="navbar-a">Contact Me</a>
     <a href="/testimonial" class="navbar-a" >Testimonial</a>
   </div>
+{{#if messages.success}}
+<div class="alert alert-success" role="alert">
+  <div class="container">
+    {{messages.success}}
+  </div>
+</div>
+{{/if}}
+
+
     
     <div class="container">
       <div class="card mb-3" style="max-width: 650px;">
@@ -119,6 +139,7 @@
       </div>
     
     </div>
+{{#if isLogin}}
 
     <div>
         <br>
@@ -144,11 +165,13 @@
                         </span>
                         {{/each}}
                       </div>
+                      
                       <div style="display: flex; text-align: center; padding-top: 5px;">
                         <button class="btnCard" style="margin-left: 10px;"><a href="/update/{{this.id}}" class="lol">update</a></button>
                         <form method="post" action="/delete/{{this.id}}" style="width: 110%; margin-left: 10px; margin-right:0;">
                           <button class="btnCard"><a style="text-decoration: none;">delete</a></button>
                         </form>
+                        
                       </div>
                     </div>
               </div>
@@ -156,7 +179,12 @@
           {{/each}}
         </div>
     </div>
-    
+      
+{{else}}
+<br>
+<h5 style="text-align: center;">If you want to see the project, please log in to your account</h5>
+
+{{/if}}    
 
     <script src="/assets/js/navbar.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
