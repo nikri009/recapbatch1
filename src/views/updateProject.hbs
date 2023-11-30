@@ -78,7 +78,7 @@
       <h1 style="text-align: center;">Update My Project</h1>
             <div class="container-sm" style="width: 60%; border: 1px solid #000; margin-top: 50px; margin-bottom: 50px; border-radius: 20px; background-color: #fff; ">
               <div class="custom-form">
-                    <form class="form" method="post" action="/update">
+                    <form class="form" method="post" action="/update" enctype="multipart/form-data">
                     <input type="hidden" name="id" value="{{data.id}}" readonly>
                           <div class="row mb-3">
                             <div class="col-mb-3">
@@ -148,8 +148,8 @@
 
                           <div class="row mb-3">
                             <div class="input-group mb-2">
-                              <input type="file" class="form-control" id="image" name="image">
-                              <label class="input-group-text" for="inputGroupFile02">Upload</label>
+                              <input type="file" class="form-control" id="image" name="image" required>
+                              <label class="input-group-text" for="image">Upload</label>
                             </div>
                           </div>
 

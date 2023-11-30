@@ -95,14 +95,14 @@ body {
     align-items: center;
   }
 
-  /* .navbar-hp {
+  .navbar-hp {
     width: 100%;
     display: none;
     flex-direction: column;
     align-items: center;
     background-color: black;
     
-  } */
+  }
   .menu {
     display: none;
   }

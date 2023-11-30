@@ -18,6 +18,11 @@ module.exports = {
       endDate: {
         type: Sequelize.DATE
       },
+      author: {
+        type: Sequelize.INTEGER,
+        references:"users",
+        key: "id"
+      },
       description: {
         type: Sequelize.TEXT
       },

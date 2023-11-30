@@ -4,18 +4,20 @@ const path = require('path')
 const app = express()
 const port = 3000
 const config = require('./src/config/config.json')
-const { Sequelize, QueryTypes, DATE } = require('sequelize')
+const { Sequelize, QueryTypes} = require('sequelize')
 const sequelize = new Sequelize(config.development)
 const bycrpt = require('bcrypt')
 const session = require('express-session')
 const flash = require('express-flash')
+const upload = require('./src/middleweres/uploadFile')
 
 
 
 app.set('view engine', 'hbs')
 app.set('views', path.join(__dirname,'src/views'))
 
-app.use("/assets",express.static('src/assets'))
+app.use("/assets",express.static(path.join(__dirname,'src/assets')))
+app.use("/upload",express.static(path.join(__dirname,'src/upload')))
 app.use(express.urlencoded({extended: false}))
 app.use(flash())
 app.use(session({
@@ -39,11 +41,12 @@ app.get('/detail/:id',detailCard)
 app.get('/update/:id',updateBlog)
 app.get('/regist',registView)
 app.get('/login',loginView)
+app.get('/logout',logout)
 
 app.post('/login',login)
 app.post('/regist',regist)
-app.post('/update',update)
-app.post('/project',prosesProject)
+app.post('/update', upload.single("image"),update)
+app.post('/project', upload.single("image"),prosesProject)
 
 app.post('/delete/:id',deleteCard)
 
@@ -52,7 +55,9 @@ let data = [];
 
 
 async function home(req,res){
-    const query = 'SELECT *from projects'
+    const query = `SELECT projects.id,projects.name,projects."startDate",projects."endDate",projects.description,projects.technologies,
+    projects.image,projects."createdAt",projects."updatedAt",users.name 
+    AS author FROM projects LEFT JOIN users ON projects.author_id = users.id`
     const data = await sequelize.query(query,{type: QueryTypes.SELECT})
     
     var date = data.map(item=>{
@@ -62,97 +67,115 @@ async function home(req,res){
     return {duration,unit}
 
     })
-
-    // var date = data.map(dataDiri => {
-    // const days = calculateDuration(new Date(dataDiri.startDate), new Date(dataDiri.endDate))
-    // const {duration,unit} = chooseDuration(days)
-
-    //     return   {
-    //         ...data,
-    //         duration,
-    //         unit
-    //     }
-    //   })
-    // const dataLop = date.forEach(item=>{
-    //     item.duration = duration,
-    //     item.unit = unit,
-    //     item.name = name,
-    // })
-    // {duration,unit}
-
-    // console.log(data)
-    // console.log(date)
-    // const days = calculateDuration(new Date(dataDiri.startDate), new Date(dataDiri.endDate))
-    // const {duration,unit} = chooseDuration(days)
     
-    // data.unshift(date)
     const isLogin = req.session.isLogin
     const user = req.session.user
+ 
     res.render('index', {data,user, isLogin})
 }
 function project(req,res){
-    res.render('addProject')
+    const isLogin = req.session.isLogin
+    const user = req.session.user
+    if(!isLogin){
+        
+        res.render('login')
+    }else{
+        res.render('addProject',{isLogin,user})
+    }
+   
+   
 }
 function contact(req,res){
-    res.render('contact')
+    const isLogin = req.session.isLogin
+    const user = req.session.user
+    if(!isLogin){
+        res.render('login')  
+    }else{
+        res.render('contact',{isLogin, user})
+    }
+   
 }
 function testimonial(req,res){
-    res.render('testimonial')
+    const isLogin = req.session.isLogin
+    const user = req.session.user
+    if(!isLogin){
+        res.render('login')  
+    }else{
+        res.render('testimonial',{isLogin,user})
+    }
+  
+    
 }
 async function detailCard(req,res) {
     const id = req.params.id
+    const isLogin = req.session.isLogin
+    if(!isLogin){
+        res.render('login')  
+    }else{
+        const query = `SELECT projects.id,projects.name,projects."startDate",projects."endDate",projects.description,projects.technologies,
+        projects.image,projects."createdAt",projects."updatedAt",users.name 
+        AS author FROM projects LEFT JOIN users ON projects.author_id = users.id WHERE projects.id=${id}`
+        const data = await sequelize.query(query,{type: QueryTypes.SELECT})
+        console.log(data)
+        res.render('project',{data:data[0]})
+    }
 
-    // const query=`SELECT *FROM projects where id=${id}`;
-    // const obj = sequelize.query(query,{type: QueryTypes.UPDATE})
-    const query = `SELECT *from projects`
-    const obj = await sequelize.query(query,{type: QueryTypes.SELECT})
-   
-    res.render('project',{data:obj[id]})
+    
+
 }
 async function updateBlog(req,res) {
+    const isLogin = req.session.isLogin
     const id = req.params.id 
+    if(!isLogin){
+        res.render('login')
+    } else {
+        const query = `SELECT *from projects WHERE id=${id}`
+        const obj = await sequelize.query(query,{type: QueryTypes.SELECT})
+        res.render('updateProject',{data:obj[0]})
+    }
 
-    const query = `SELECT *from projects WHERE id=${id}`
-    const obj = await sequelize.query(query,{type: QueryTypes.SELECT})
-    res.render('updateProject',{data:obj[0]})
+
 }
 
 async function update(req,res){
-    const id = req.body.id
-    const name = req.body.inputName 
-    const startDate = req.body.startDate 
-    const endDate = req.body.endDate 
-    const description = req.body.description
-    const technologies = req.body.checkbox
-    const image = "bulan.jpg";
 
-    const query = `UPDATE projects SET name='${name}', "startDate"='${startDate}', "endDate"='${endDate}', description='${description}',technologies='{${technologies}}',image='${image}'
-    WHERE id='${id}'`
-    
-    const obj = await sequelize.query(query,{ type: QueryTypes.UPDATE })
-    
-    console.log(obj)
-    res.redirect('/') 
+        const id = req.body.id
+        const name = req.body.inputName 
+        const startDate = req.body.startDate 
+        const endDate = req.body.endDate 
+        const description = req.body.description
+        const technologies = req.body.checkbox
+        const image = req.file.filename
+        
+        const query = `UPDATE projects SET name='${name}', "startDate"='${startDate}', "endDate"='${endDate}', description='${description}',technologies='{${technologies}}',image='${image}'
+        WHERE id='${id}'`
+        const obj = await sequelize.query(query,{ type: QueryTypes.UPDATE })
+        res.redirect('/')
     
 }
+
 async function prosesProject(req,res){
+    
     const name = req.body.inputName 
     const startDate = req.body.startDate 
     const endDate = req.body.endDate 
     const description = req.body.description
     const technologies = req.body.checkbox
-    const image = "bulan.jpg";
-
-    const query = `INSERT INTO projects(name,"startDate","endDate",description,technologies,image) VALUES ('${name}','${startDate}','${endDate}','${description}','{${technologies}}','${image}')`
+    const image = req.file.filename;
+    const id = req.session.user.id
+    
+    const query = `INSERT INTO projects(name,"startDate","endDate",description,technologies,image,author_id) 
+    VALUES ('${name}','${startDate}','${endDate}','${description}','{${technologies}}','${image}','${id}')`
     const obj = await sequelize.query(query,{ type: QueryTypes.INSERT })
 
-    // var arrayTanggalLahir = obj.map(function(dataDiri) {
-    //     return dataDiri.date;
-    //   })
-    // console.log('helooo',arrayTanggalLahir)
+
+    console.log("ini image",obj)
+
    
     res.redirect('/') 
 }
+
+
 
 
 function calculateDuration(startDate, endDate) {
@@ -178,7 +201,7 @@ async function deleteCard (req,res) {
 
     const query = `DELETE FROM projects WHERE id=${id}`
     const obj = await sequelize.query(query,{ type: QueryTypes.DELETE })
-    console.log(obj)
+    
     res.redirect('/')
 
 }
@@ -211,6 +234,7 @@ async function login(req,res){
     const obj = await sequelize.query(query,{type: QueryTypes.SELECT})
 
     if(obj.length == 0){
+        req.flash('denger', "your Account not Found!!")//pengecekan di data email
         console.log("your Account not Found!!")
         return res.redirect('/login')
     }
@@ -223,7 +247,9 @@ async function login(req,res){
         }
         req.flash('success','Login success')
         req.session.isLogin = true
+        req.session.id = obj[0].id
         req.session.user = {
+            id: obj[0].id,
             name : obj[0].name,
             email: obj[0].email
         }
@@ -232,6 +258,17 @@ async function login(req,res){
     })
 
     // res.redirect('login')
+}
+function logout(req,res){
+    req.session.destroy(err => {
+        if (err) {
+          console.error(err);
+        } else {
+        //   res.clearCookie('connect.sid'); // Menghapus cookie session
+          res.redirect('/login');
+        }
+      });
+
 }
 
 app.listen(port,()=>{

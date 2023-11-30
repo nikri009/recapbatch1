@@ -34,6 +34,7 @@
           border-radius: 10px;
           width: 80%; 
           height: 30px;
+          
          }
          .btnCard:hover{
           background-color: #fff !important;
@@ -56,7 +57,7 @@
       <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/"><b>Home</b></a>
+            <a class="nav-link active" aria-current="page" href="/">Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/project">AddProject</a>
@@ -65,14 +66,19 @@
             <a class="nav-link" href="/testimonial">Testimonial</a>
           </li>
         </ul>
-        <div style="width:18%; text-align: center;">
-        {{#if isLogin}}
-          <h5 class="user">Welcome {{user.name}}</h5>
-          {{else}}
-          <a href="/regist" style="color: black; text-decoration: none; margin-right: 10px;">Register</a>
-          <a href="/login" style="color: black; text-decoration: none;">Login</a>          
-        {{/if}}
-        </div>
+        
+          {{#if isLogin}}
+          <div class="nav-item" style="width:30%; display:flex; gap: 30px;" >
+            <h5 class="user">Welcome {{user.name}}</h5>
+            <a href="/logout" class="nav-link" style="color: black; text-decoration: none;">Logout</a> 
+          </div> 
+            {{else}}
+            <div class="nav-item" style="display:flex; width:15%; gap: 30px;" >
+              <a href="/regist" class="nav-link"  style="color: black; text-decoration: none; margin-right: 10px;">Register</a>
+              <a href="/login"  class="nav-link" style="color: black; text-decoration: none;">Login</a>          
+            </div>
+          {{/if}}
+        
         <div>
           <button class="btn btn-outline-success" type="submit" >
             <a href="/contact-me" class="lol">Contact Me</a>
@@ -139,8 +145,6 @@
       </div>
     
     </div>
-{{#if isLogin}}
-
     <div>
         <br>
         <div id="contents" style="display: flex; flex-wrap: wrap; justify-content: center;">
@@ -148,16 +152,16 @@
           <div class="container-card ">
               <div class="card-project">
                     <div style="height: 50%;">
-                      <img src="/assets/img/{{image}}" alt="" class="active-card" >
+                      <img src="/upload/{{this.image}}" alt="" class="active-card" >
                     </div>
-                    <div style="width: 100%; height: 35%;">
+                    <div style="width: 100%; height: 25%;">
                     
                       <p style="height: 10px;">durasi : {{this.startDate}} - {{this.endDate}}</p>
-                    
-                      <h4><a href="/detail/{{@index}}" style=" color : black; text-decoration: none; ">{{this.name}}</a></h4>
+                      <h5><a href="/detail/{{this.id}}" style=" color : black; text-decoration: none; ">{{this.name}}</a></h5>
                       <p class="p">{{this.description}}</p>
                     </div>
-                    <div style="width: 100%; height: 15%;">
+                    <div style="width: 100%; height: 25%;">
+                      <p style="text-align: right;">- {{this.author}}</p>
                       <div style="display: flex;">
                         {{#each this.technologies}}
                         <span class="badge" style="margin: button 20px;">
@@ -180,11 +184,11 @@
         </div>
     </div>
       
-{{else}}
+{{!-- {{else}}
 <br>
 <h5 style="text-align: center;">If you want to see the project, please log in to your account</h5>
 
-{{/if}}    
+{{/if}}     --}}
 
     <script src="/assets/js/navbar.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
