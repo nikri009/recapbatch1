@@ -14,6 +14,7 @@
               background-color: #fff !important;
               color: black !important;
               text-decoration: none;
+              
           }
           .navbar-hp{
           display: none;
@@ -68,12 +69,12 @@
         </ul>
         
           {{#if isLogin}}
-          <div class="nav-item" style="width:30%; display:flex; gap: 30px;" >
+          <div class="nav-item" style="width:25%; display:flex; gap: 40px; justify-content: center;" >
             <h5 class="user">Welcome {{user.name}}</h5>
             <a href="/logout" class="nav-link" style="color: black; text-decoration: none;">Logout</a> 
           </div> 
             {{else}}
-            <div class="nav-item" style="display:flex; width:15%; gap: 30px;" >
+            <div class="nav-item" style="display:flex; width:20%; gap: 30px; justify-content: center;" >
               <a href="/regist" class="nav-link"  style="color: black; text-decoration: none; margin-right: 10px;">Register</a>
               <a href="/login"  class="nav-link" style="color: black; text-decoration: none;">Login</a>          
             </div>
@@ -108,10 +109,10 @@
 
     
     <div class="container">
-      <div class="card mb-3" style="max-width: 650px;">
-        <div class="row g-0">
+      <div class="card mb-3" style="max-width: 650px; padding: 18px;">
+        <div class="row g-0 ">
           <div class="col-md-8">
-            <div class="card-body">
+            <div class="card-body" >
               <h5 class="card-title">Hai welcome to my profile</h5>
               <p class="card-text" style="text-align: justify;">Perkenalkan nama saya Nikri Aria Pratama, saya tinggal di sasak panjang kecamatan tajurhalang Kabupaten bogor. 
                 Kesibukan saya saat ini adalah kuliah dan belajar untuk menjadi seorang programer yang handal, 
@@ -120,8 +121,8 @@
                 Do'a kan saya semoga dengan saya bisa memiliki skill yang baik dalam dunia industri sebagai programer.</p>
 
                 <div style="display: flex; flex-direction: column; " >
-                    <div class="download">
-                        <button class="btm">contact</button>
+                    <div class="download" style="gap: 10px;">
+                        <button class="btm"><a href="/contact-me" style="text-decoration: none; color:#fff; ">contact</a></button>
                         <p>Download CV <a href="#"><img src="/assets/icon/icon2.png" alt="Download" style="width: 30px; margin: 0 10px 0 10px;"></a>
                         </p>
                     </div>
@@ -148,7 +149,7 @@
     <div>
         <br>
         <div id="contents" style="display: flex; flex-wrap: wrap; justify-content: center;">
-          {{#each data}}
+          {{#each date}}
           <div class="container-card ">
               <div class="card-project">
                     <div style="height: 50%;">
@@ -156,7 +157,7 @@
                     </div>
                     <div style="width: 100%; height: 25%;">
                     
-                      <p style="height: 10px;">durasi : {{this.startDate}} - {{this.endDate}}</p>
+                      <p style="height: 10px;">durasi : {{this.duration}} {{this.unit}}</p>
                       <h5><a href="/detail/{{this.id}}" style=" color : black; text-decoration: none; ">{{this.name}}</a></h5>
                       <p class="p">{{this.description}}</p>
                     </div>
@@ -169,14 +170,14 @@
                         </span>
                         {{/each}}
                       </div>
-                      
+                      {{#if id==author}}
                       <div style="display: flex; text-align: center; padding-top: 5px;">
                         <button class="btnCard" style="margin-left: 10px;"><a href="/update/{{this.id}}" class="lol">update</a></button>
                         <form method="post" action="/delete/{{this.id}}" style="width: 110%; margin-left: 10px; margin-right:0;">
                           <button class="btnCard"><a style="text-decoration: none;">delete</a></button>
                         </form>
-                        
                       </div>
+                      {{/if}}
                     </div>
               </div>
           </div>

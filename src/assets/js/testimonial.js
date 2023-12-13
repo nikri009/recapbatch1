@@ -31,6 +31,7 @@ function tampilanHtml(item) {
             <div style="width: 80%;">
                 <img src="${item.image}" alt="Bulan" class="img">
             </div>
+            <br>
             <div style="width: 80%">
                 <p><i>${item.content}</i></p>
                 <div style="text-align: right;">

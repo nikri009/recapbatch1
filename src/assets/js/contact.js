@@ -24,7 +24,7 @@ function data(){
         console.log(`Nama   : ${inputName}\nEmail   : ${inputEmail}\nPhone Number   : ${inputPhone}\nSubject    :${inputSubject}\nMessege   : ${inputMessege}`);
     }
     
-    let a = document.createElement(`a`)
-    a.href = `mailto:${inputEmail}?subject=${inputSubject}&body=${inputMessege}`
-    a.click()
+    let email = document.createElement(`a`)
+    email.href = `mailto:${inputEmail}?subject=${inputSubject}&body=${inputMessege}`
+    email.click()
 }

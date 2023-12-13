@@ -13,6 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
+   //folder models mendefinisikan skema atau struktur dari entitas-entitas yang akan disimpan dalam database.
   user.init({
     name: DataTypes.STRING,
     email: DataTypes.STRING,

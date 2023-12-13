@@ -1,5 +1,5 @@
 'use strict';
-
+//mendefinisikan skema atau struktur dari entitas-entitas yang akan disimpan dalam database.
 const fs = require('fs');
 const path = require('path');
 const Sequelize = require('sequelize');

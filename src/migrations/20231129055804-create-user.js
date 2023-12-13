@@ -1,6 +1,7 @@
 'use strict';
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
+  //"Async up" dapat merujuk pada skrip migrasi yang dilakukan saat kita menerapkan atau "meng-upgrade" skema database.
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('users', {
       id: {
@@ -29,6 +30,7 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
+    //"Async down" mungkin merujuk pada skrip migrasi yang dilakukan saat kita melakukan pembatalan atau "meng-downgrade" skema database. 
     await queryInterface.dropTable('users');
   }
 };

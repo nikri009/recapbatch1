@@ -53,25 +53,41 @@ app.post('/delete/:id',deleteCard)
 let data = [];
 
 
-
 async function home(req,res){
     const query = `SELECT projects.id,projects.name,projects."startDate",projects."endDate",projects.description,projects.technologies,
-    projects.image,projects."createdAt",projects."updatedAt",users.name 
+    projects.image,projects."createdAt",projects."updatedAt",projects.author_id,users.name 
     AS author FROM projects LEFT JOIN users ON projects.author_id = users.id`
     const data = await sequelize.query(query,{type: QueryTypes.SELECT})
     
-    var date = data.map(item=>{
+    let date = data.map(item=>{
     const days = calculateDuration(new Date(item.startDate), new Date(item.endDate))
     const {duration,unit} = chooseDuration(days)
+    const { name ,description,technologies, image, author, startDate, endDate, id, author_id} = item;
+   
 
-    return {duration,unit}
+    return {
+        id,
+        name,
+        description,
+        technologies,
+        image,
+        author,
+        duration,
+        unit,
+        startDate,
+        endDate,
+        author_id
+    }
 
     })
+    if(id==user){
+        console.log('aku disini',user)
+    }
     
     const isLogin = req.session.isLogin
     const user = req.session.user
  
-    res.render('index', {data,user, isLogin})
+    res.render('index', {date,user, isLogin})
 }
 function project(req,res){
     const isLogin = req.session.isLogin
@@ -116,8 +132,29 @@ async function detailCard(req,res) {
         projects.image,projects."createdAt",projects."updatedAt",users.name 
         AS author FROM projects LEFT JOIN users ON projects.author_id = users.id WHERE projects.id=${id}`
         const data = await sequelize.query(query,{type: QueryTypes.SELECT})
-        console.log(data)
-        res.render('project',{data:data[0]})
+        let date = data.map(item=>{
+            const days = calculateDuration(new Date(item.startDate), new Date(item.endDate))
+            const {duration,unit} = chooseDuration(days)
+            const { name ,description,technologies, image, author, startDate, endDate, id, author_id} = item;
+           
+        
+            return {
+                id,
+                name,
+                description,
+                technologies,
+                image,
+                author,
+                duration,
+                unit,
+                startDate,
+                endDate,
+                author_id
+            }
+        
+            })
+       
+        res.render('project',{data:date[0]})
     }
 
     
@@ -138,6 +175,7 @@ async function updateBlog(req,res) {
 }
 
 async function update(req,res){
+    const isLogin = req.session.isLogin
 
         const id = req.body.id
         const name = req.body.inputName 
@@ -242,10 +280,9 @@ async function login(req,res){
     bycrpt.compare(password,obj[0].password,(err,result)=>{
         if(!result){
             req.flash('denger','ERROR to login, please check your email or password again!!')
-            // console.error("your Password error!") proses jika salah password
             return res.redirect('/login')
         }
-        req.flash('success','Login success')
+        req.flash('success','Login success')//tambahin set timeout
         req.session.isLogin = true
         req.session.id = obj[0].id
         req.session.user = {
@@ -257,14 +294,12 @@ async function login(req,res){
         
     })
 
-    // res.redirect('login')
 }
 function logout(req,res){
     req.session.destroy(err => {
         if (err) {
           console.error(err);
         } else {
-        //   res.clearCookie('connect.sid'); // Menghapus cookie session
           res.redirect('/login');
         }
       });

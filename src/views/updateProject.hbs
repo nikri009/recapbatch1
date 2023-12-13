@@ -45,15 +45,20 @@
             <a class="nav-link" href="/testimonial">Testimonial</a>
           </li>
         </ul>
-        <div style="width:18%; text-align: center;">
-        {{#if isLogin}}
-          <h5 class="user">Welcome {{user.name}}</h5>
-          {{else}}
-          <a href="/regist" style="color: black; text-decoration: none; margin-right: 10px;"><b>Register</b></a>
-          <a href="/login" style="color: black; text-decoration: none;">Login</a>          
-        {{/if}}
-        </div>
-        <div >
+        
+          {{#if isLogin}}
+          <div class="nav-item" style="width:25%; display:flex; gap: 40px; justify-content: center;" >
+            <h5 class="user">Welcome {{user.name}}</h5>
+            <a href="/logout" class="nav-link" style="color: black; text-decoration: none;">Logout</a> 
+          </div> 
+            {{else}}
+            <div class="nav-item" style="display:flex; width:20%; gap: 30px; justify-content: center;" >
+              <a href="/regist" class="nav-link"  style="color: black; text-decoration: none; margin-right: 10px;">Register</a>
+              <a href="/login"  class="nav-link" style="color: black; text-decoration: none;">Login</a>          
+            </div>
+          {{/if}}
+        
+        <div>
           <button class="btn btn-outline-success" type="submit" >
             <a href="/contact-me" class="lol">Contact Me</a>
           </button>
@@ -66,8 +71,8 @@
     
   </nav>
   <div class="navbar-hp" id="navbarHp" >
-    <a href="/" class="navbar-a">Home</a>
-    <a href="/project" class="navbar-a" style="background-color: orangered;">AddProject</a>
+    <a href="/" class="navbar-a" style="background-color: orangered;">Home</a>
+    <a href="/project" class="navbar-a">AddProject</a>
     <a href="/contact-me" class="navbar-a">Contact Me</a>
     <a href="/testimonial" class="navbar-a" >Testimonial</a>
   </div>
